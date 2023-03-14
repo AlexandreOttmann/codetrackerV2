@@ -1,5 +1,5 @@
 import Home from '../pages/Home';
-import { describe, test, expect } from 'vitest';
+import { test, expect } from 'vitest';
 
 test('Home component should display Bienvenue', () => {
   const home = Home();

@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
-import reactLogo from './assets/react.svg';
-import './App.css';
 import { db } from './database/firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Layout } from './components/Layout/Layout';
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -28,9 +26,11 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        <Route path='/' element={<div>Home</div>} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path='/' element={<div>Home</div>} />
+        </Routes>
+      </Layout>
     </Router>
   );
 }
