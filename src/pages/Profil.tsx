@@ -1,8 +1,8 @@
 import React from 'react';
-import { getAuth } from 'firebase/auth';
+import { auth } from '../database/firebase';
 
 export const Profil = () => {
- const auth = getAuth();
+ console.log(auth.currentUser);
  console.log('non', auth.currentUser?.displayName);
  return <div>Profil de {auth.currentUser?.displayName}</div>;
 };
