@@ -1,38 +1,43 @@
+import React from 'react';
 import { db } from './database/firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/Layout/Layout';
+import { Profil } from './pages/Profil';
 
-function App() {
-  // const [count, setCount] = useState(0);
-  // const [data, setData] = useState<{}>([]);
+import Home from './pages/Home';
+import LoginPage from './pages/Login';
+import AuthRoute from './components/AuthRoute';
 
-  // const getProjects = async () => {
-  //   try {
-  //     console.log('coucou');
-  //     const snapshot = await getDocs(collection(db, 'projects'));
-  //     console.log(snapshot);
-  //     const projects = snapshot.docs.map((doc) => doc.data());
-  //     console.log(projects);
-  //     setData(projects);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+export interface IApplicationProps {}
 
-  // useEffect(() => {
-  //   getProjects();
-  // }, []);
+const App: React.FunctionComponent<IApplicationProps> = (props) => {
+ return (
+  <Router>
+   <Layout>
+    <Routes>
+     <Route
+      path="/"
+      element={
+       <AuthRoute>
+        <Home />
+       </AuthRoute>
+      }
+     />
 
-  return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path='/' element={<div>Home</div>} />
-        </Routes>
-      </Layout>
-    </Router>
-  );
-}
+     <Route
+      path="/profil"
+      element={
+       <AuthRoute>
+        <Profil />
+       </AuthRoute>
+      }
+     />
+     <Route path="/login" element={<LoginPage />} />
+    </Routes>
+   </Layout>
+  </Router>
+ );
+};
 
 export default App;
