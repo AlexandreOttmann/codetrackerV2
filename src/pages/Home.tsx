@@ -1,4 +1,8 @@
 import React from 'react';
+import DashboardHome from '../components/Home/DashboardHome';
+import { Features } from '../components/Home/Features';
+import Hero from '../components/Home/Hero';
+import Testimonial from '../components/Home/Testimonial';
 import { useAuth } from '../context/Context';
 
 const Home = () => {
@@ -6,8 +10,10 @@ const Home = () => {
   console.log('HOME ', user.auth.currentUser);
   return (
     <>
-      <img src={user.auth.currentUser?.photoURL}></img>
-      <h1 className='text-5xl text-gray-900 '>Bienvenue {user?.auth?.currentUser?.displayName}</h1>
+      <Hero />
+      <Features />
+      <DashboardHome />
+      <Testimonial />
     </>
   );
 };
