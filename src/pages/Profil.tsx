@@ -1,6 +1,7 @@
 import React from 'react';
 import { auth } from '../database/firebase';
-import { Sidebar } from '../components/Layout/Sidebar';
+import { Sidebar } from '../components/Dashboard/Layout/Sidebar';
+import Content from '../components/Dashboard/Content';
 
 export const Profil = () => {
   //  console.log(auth.currentUser);
@@ -8,6 +9,7 @@ export const Profil = () => {
   return (
     <>
       <Sidebar value={auth} />
+      <Content />
       {/* <div>Profil de {auth.currentUser?.displayName}</div>) */}
     </>
   );

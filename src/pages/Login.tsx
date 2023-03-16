@@ -3,6 +3,9 @@ import { LockClosedIcon } from '@heroicons/react/20/solid';
 import { GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../database/firebase';
+import { Header } from '../components/Layout/Elements/Header';
+import Testimonial from '../components/Home/Testimonial';
+import Hero from '../components/Home/Hero';
 
 export interface ILoginPageProps {}
 
@@ -26,6 +29,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 
   return (
     <>
+      <Header />
       <div className='flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
         <div className='w-full max-w-md space-y-8'>
           <div>

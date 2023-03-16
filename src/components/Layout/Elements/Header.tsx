@@ -7,6 +7,7 @@ import { auth } from '../../../database/firebase';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/Context';
 import { AuthContext } from '../../../context/Context';
+import { useMatch } from 'react-router-dom';
 
 export interface IHomePage {}
 const navigation = [
@@ -25,6 +26,13 @@ export const Header = () => {
   const { currentUser } = user.auth;
   console.log('COUCOU', { auth });
   const [loading, setLoading] = useState(false);
+
+  const params = useMatch('/login');
+  if (params) {
+    console.log('params');
+  } else {
+    console.log('no params');
+  }
 
   useEffect(() => {}, []);
 
@@ -74,12 +82,7 @@ export const Header = () => {
                   {/* Profile dropdown */}
                   <Menu as='div' className='relative ml-3'>
                     <div>
-                      {loading ? (
-                        <Menu.Button className='flex bg-indigo-500 font-semibold text-white px-2 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
-                          <span className='sr-only'>Open user menu</span>
-                          <Link to='/profil'>Mon dashboard</Link>
-                        </Menu.Button>
-                      ) : (
+                      {!params && (
                         <Menu.Button className='flex bg-indigo-500 font-semibold text-white px-2 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
                           <span className='sr-only'>Open user menu</span>
                           <Link to='/login'>Se connecter</Link>

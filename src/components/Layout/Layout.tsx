@@ -5,7 +5,6 @@ import { Footer } from './Elements/Footer';
 export const Layout = ({ children }: any) => {
   return (
     <>
-      <Header />
       {children}
       <Footer />
     </>
