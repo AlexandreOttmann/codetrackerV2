@@ -19,29 +19,29 @@ const GlobalStatsGithub = ({ data }: any) => {
     setListLanguages(languages);
   }, [data]);
 
-  let entries = Object.entries(listLanguages);
+  let sortedEntries = Object.entries(listLanguages)
+    .filter(([key, val]) => key !== 'null')
+    .sort((a: any, b: any) => b[1] - a[1]);
 
   return (
     <>
       <div className='w-1/2 text-center'>
-        <div className='text-6xl font-bold text-indigo-500 '>
+        <div className='text-6xl font-bold text-zinc-700 '>
           {data.length}
-          <div className='text-2xl text-indigo-400 font-normal'>projets</div>
+          <div className='text-2xl text-zinc-600 font-normal'>projets</div>
         </div>
       </div>
-      <div className='w-1/2 text-center'>
-        <div className='text-sm font-bold text-teal-500'>
-          {entries.map(
+      <div className='w-1/2 m-auto flex flex-col justify-center h-48 overflow-y-auto section '>
+        <div>
+          {sortedEntries.map(
             ([key, val]) =>
               key != 'null' && (
-                <div>
-                  <span className='font-bold text-teal-500 '>{val} </span>
-                  <span className='text-xs text-teal-400 font-normal'>{key}</span>
+                <div className='text-start '>
+                  <span className='font-semibold text-2xl text-stone-600 '>{val} </span>
+                  <span className='text-normal text-lg text-stone-500 font-normal'>{key}</span>
                 </div>
               ),
           )}
-          {/* {Object.keys(listLanguages)} */}
-          {/* <div className='text-2xl text-teal-400 font-normal'> {Object.values(listLanguages)}</div>z<div className='text-2xl text-teal-400 font-normal'>commits</div> */}
         </div>
       </div>
     </>

@@ -20,12 +20,12 @@ const TableCommits = ({ data }: any) => {
 
   return (
     <div className='container mx-auto'>
-      <div className='py-8'>
-        <div>
-          <h2 className='text-2xl font-semibold leading-tight'>Vos projets Github</h2>
+      <div className='py-4'>
+        <div className='border-b mb-4'>
+          <h2 className='text-2xl text-gray-600 p-4 font-semibold tracking-wide'>Projets Github</h2>
         </div>
-        <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
-          <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
+        <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 overflow-x-auto'>
+          <div className='inline-block min-w-full shadow rounded border-t-8 border-t-indigo-500 overflow-hidden'>
             <table className='min-w-full leading-normal'>
               <thead>
                 <tr>
@@ -51,10 +51,10 @@ const TableCommits = ({ data }: any) => {
                       </div>
                     </td>
                     <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                      <p className='text-gray-900 whitespace-no-wrap text-center'>{item.language}</p>
+                      <p className='text-gray-900 whitespace-no-wrap text-center'>{item.language != null ? item.language : 'Markdown et ressources'}</p>
                     </td>
                     <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                      <p className='text-gray-900 whitespace-no-wrap text-center'>{item.description}</p>
+                      <p className='text-gray-900 whitespace-no-wrap text-center'>{item.description != undefined ? item.description : 'Aucune Description'}</p>
                     </td>
                     <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
                       <p className='text-gray-900 whitespace-no-wrap text-center'>{dateConverter(item.updated_at)}</p>
