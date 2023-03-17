@@ -19,7 +19,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
     signInWithPopup(auth, new GithubAuthProvider())
       .then((response) => {
         // on redirige l'utilisateur vers la page profil
-        navigate('/profil');
+        navigate('/dashboard');
       })
       .catch((error) => {
         console.log(error);

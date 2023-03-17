@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { useAuth } from '../../../context/Context';
 import { auth } from '../../../database/firebase';
+import { Link } from 'react-router-dom';
 
 import { signOut } from 'firebase/auth';
 
@@ -63,10 +64,10 @@ export const Sidebar = (props: any) => {
         <div className='h-full px-3 py-4 overflow-y-auto bg-gray-50 '>
           <ul className='space-y-2'>
             <li>
-              <a href='#' className='flex items-center justify-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 '>
+              <Link to='/dashboard' className='flex flex-col items-center justify-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 '>
                 <img className='h-8 w-8 rounded-full  ' src={user.auth.currentUser?.photoURL} alt='user_profile' />
-              </a>
-              <span className='ml-3'>Bonjour {user.auth.currentUser?.displayName}</span>
+                <span className='ml-3'>Bonjour {user.auth.currentUser?.displayName}</span>
+              </Link>
             </li>
 
             <li>
