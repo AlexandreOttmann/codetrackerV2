@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export const CommitsList = ({ data }: any) => {
  function dateConverter(dateInput: any) {
   const date = new Date(dateInput);
@@ -37,28 +39,39 @@ export const CommitsList = ({ data }: any) => {
         </tr>
        </thead>
        <tbody>
-        {data.map((item: any) => (
-         <tr key={item.id}>
-          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-           <p className="text-gray-900 whitespace-no-wrap text-center">
-            {item.commit.message}
-           </p>
-          </td>
-          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-           <p className="text-gray-900 whitespace-no-wrap text-center">
-            {item.commit.author.name}
-           </p>
-          </td>
-          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-           <p className="text-gray-900 whitespace-no-wrap text-center">/</p>
-          </td>
-          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-           <p className="text-gray-900 whitespace-no-wrap text-center">
-            {item.commit.author.date}
-           </p>
-          </td>
-         </tr>
-        ))}
+        {data
+         //  .sort((a: any, b: any) => b.commit.author.date - a.commit.author.date)
+         .map((item: any) => (
+          <tr key={item.id}>
+           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <p className="text-gray-900 whitespace-no-wrap text-start">
+             {item.commit.message}
+            </p>
+           </td>
+           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <p className="text-gray-900 whitespace-no-wrap flex pl-10 justify-start">
+             <Link to={item.author.html_url} target="_blank">
+              <div className="flex gap-2 justify-center items-center font-semibold">
+               <img
+                src={item.author.avatar_url}
+                alt="avatar"
+                className="w-7 h-7 rounded-full"
+               />
+               {item.commit.author.name}
+              </div>
+             </Link>
+            </p>
+           </td>
+           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <p className="text-gray-900 whitespace-no-wrap text-center">/</p>
+           </td>
+           <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <p className="text-gray-900 whitespace-no-wrap text-center">
+             {dateConverter(item.commit.author.date)}
+            </p>
+           </td>
+          </tr>
+         ))}
        </tbody>
       </table>
      </div>

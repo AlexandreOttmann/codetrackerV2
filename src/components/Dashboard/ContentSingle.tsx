@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../context/Context';
 import { CommitsList } from './SingleProject/CommitsList';
+import { BackButton } from '../Layout/Elements/BackButton';
 
 const ContentSingle = () => {
  const { id } = useParams();
@@ -25,8 +26,8 @@ const ContentSingle = () => {
 
  return (
   <div className="z-2 p-4 sm:ml-64 xl:ml-[calc(20em_-_4.5em)] 2xl:ml-[calc(12em_-_4.5em)] ">
-   <h1>Liste des commits</h1>
    <div className="p-4 shadow-xl rounded-lg bg-[#ffffff90] ">
+    <BackButton />
     <CommitsList data={data} />
    </div>
   </div>
