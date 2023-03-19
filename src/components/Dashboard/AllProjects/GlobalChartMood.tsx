@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 
-const RadialBar = ({ data }) => {
+const RadialBar = ({ data }: any) => {
   const [listLanguages, setListLanguages] = useState<any>([]);
   let languageTab: any[] = [];
   let percentage: any[] = [];
@@ -22,12 +22,12 @@ const RadialBar = ({ data }) => {
   }, [data]);
 
   let entries = Object.entries(listLanguages);
-  entries.map(([key, val]) => {
+  entries.map(([key, val]: any) => {
     let value = (val * 10) / (languageTab.length / 10);
+    value = +value.toFixed(0);
     let name = key;
     percentage.push({ name, value });
   });
-  console.log(percentage);
 
   // {entries.map(
   // 	([key, val]) =>
@@ -41,7 +41,6 @@ const RadialBar = ({ data }) => {
 
   let table = Object.entries(percentage);
   let series = table.map(([key, val]) => val.value);
-  console.log('TAB', table);
 
   let options: any = {
     labels: table.map(([key, val]) => (val.name != 'null' ? val.name : 'Autres')),

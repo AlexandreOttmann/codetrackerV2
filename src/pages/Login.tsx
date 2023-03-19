@@ -1,11 +1,10 @@
-import React, { useRef, useState, useContext, createContext } from 'react';
+import React, { useRef, useState, useContext, useEffect, createContext } from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 import { GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../database/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 import { Header } from '../components/Layout/Elements/Header';
-import Testimonial from '../components/Home/Testimonial';
-import Hero from '../components/Home/Hero';
 
 export interface ILoginPageProps {}
 

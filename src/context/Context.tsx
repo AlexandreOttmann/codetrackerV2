@@ -10,5 +10,5 @@ export const AuthProvider = ({ children }: any) => {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  return <AuthContext.Provider value={{ currentUser, setCurrentUser }}>{!loading && children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{}}>{!loading && children}</AuthContext.Provider>;
 };
