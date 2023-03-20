@@ -1,34 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { technologiesFormater } from '../../../utils/technologiesFormater';
+import { sortedDataEntries } from '../../../utils/sortedDataEntries';
 
 const GlobalStatsGithub = ({ data }: any) => {
   const [listLanguages, setListLanguages] = useState<any>([]);
-  let languageTab: any[] = [];
-  data.map((item: any) => {
-    languageTab.push(item.language);
-  });
-  let languages: [] = [];
-
-  function getValuePerLanguage(language: any) {
-    languages = language.reduce(function (acc: any, curr: any) {
-      return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-    }, []);
-  }
+  const [sortedEntries, setSortedEntries] = useState<any>([]);
 
   useEffect(() => {
-    getValuePerLanguage(languageTab);
-    setListLanguages(languages);
+    setListLanguages(technologiesFormater(data));
+    setSortedEntries(sortedDataEntries(listLanguages));
   }, [data]);
-
-  let sortedEntries = Object.entries(listLanguages)
-    .filter(([key, val]) => key !== 'null')
-    .sort((a: any, b: any) => b[1] - a[1]);
 
   return (
     <>
       <div className='w-1/2 text-center'>
-        <div className='text-6xl font-bold text-zinc-700 '>
+        <div className='text-6xl font-bold text-white '>
           {data.length}
-          <div className='text-2xl text-zinc-600 font-normal'>projets</div>
+          <div className='text-2xl text-custom-gray font-normal'>projets</div>
         </div>
       </div>
       <div className='w-1/2 m-auto flex flex-col justify-center h-48 overflow-y-auto section '>
@@ -36,9 +24,9 @@ const GlobalStatsGithub = ({ data }: any) => {
           {sortedEntries.map(
             ([key, val]: any) =>
               key != 'null' && (
-                <div key={key} className='text-start '>
-                  <span className='font-semibold text-2xl text-stone-600 '>{val}</span>
-                  <span className='text-normal text-lg text-stone-500 font-normal'>{key}</span>
+                <div key={key} className='text-start flex gap-2 items-center '>
+                  <span className='font-semibold text-xl text-white '>{val}</span>
+                  <span className='text-normal text-lg text-custom-gray font-normal'>{key}</span>
                 </div>
               ),
           )}

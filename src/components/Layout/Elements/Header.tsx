@@ -57,7 +57,7 @@ export const Header = () => {
                 </div>
                 <div className='flex flex-1 items-center justify-center sm:justify-start'>
                   <Link to='/'>
-                    <div className='flex justify-center flex-shrink-0 items-center font-bold text-indigo-500 leading-tight text-lg py-2'>CodeTracker</div>
+                    <div className='flex justify-center flex-shrink-0 items-center font-bold text-custom-blue leading-tight text-lg py-2'>CodeTracker</div>
                   </Link>
                   <div className='hidden sm:ml-6 sm:block'>
                     <div className='flex space-x-4'>
@@ -79,12 +79,12 @@ export const Header = () => {
                   <Menu as='div' className='relative ml-3'>
                     <div>
                       {!currentUser ? (
-                        <Menu.Button className='flex bg-indigo-500 font-semibold text-white px-2 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
+                        <Menu.Button className='flex bg-custom-blue font-semibold text-white px-2 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
                           <span className='sr-only'>Open user menu</span>
                           <Link to='/login'>Se connecter</Link>
                         </Menu.Button>
                       ) : (
-                        <Menu.Button className='flex bg-indigo-500 font-semibold text-white px-2 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
+                        <Menu.Button className='flex bg-custom-blue font-semibold text-white px-2 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
                           <span className='sr-only'>Open user menu</span>
                           <Link to='/dashboard'>Mon dashboard</Link>
                         </Menu.Button>
@@ -102,7 +102,7 @@ export const Header = () => {
                     key={item.name}
                     as='a'
                     href={item.href}
-                    className={classNames(item.current ? 'bg-blue-600 text-white' : 'text-gray-900 hover:bg-blue-600 hover:text-white', 'block rounded-md px-3 py-2 text-base font-medium')}
+                    className={classNames(item.current ? 'bg-custom-blue text-white' : 'text-gray-900 hover:bg-blue-600 hover:text-white', 'block rounded-md px-3 py-2 text-base font-medium')}
                     aria-current={item.current ? 'page' : undefined}
                   >
                     {item.name}

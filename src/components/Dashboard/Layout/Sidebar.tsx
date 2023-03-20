@@ -69,11 +69,11 @@ export const Sidebar = (props: any) => {
         onClick={handleClickOutside}
         aria-label='Sidebar'
       >
-        <div className='h-full px-3 py-4 overflow-y-auto backdrop-blur-2xl  sm:backdrop-blur:none	sm:bg-slate-900  bg-opacity-90   shadow'>
+        <div className='h-full px-3 py-4 overflow-y-auto backdrop-blur-2xl  sm:backdrop-blur:none	sm:bg-custom-dark  bg-opacity-90   shadow'>
           <ul className='space-y-2'>
             <li>
               <div className='flex flex-col items-center justify-center p-2 text-base  font-normal backdrop-blur-2xl text-gray-200 '>
-                <img className='h-8 w-8 rounded-full  ' src={user.auth?.photoURL} alt='user_profile' />
+                <img className='h-10 w-10 rounded-full mb-4 ' src={user.auth?.photoURL} alt='user_profile' />
                 <span className='ml-3 text-zinc-700  sm:text-gray-200'>Bonjour {user.auth?.displayName}</span>
               </div>
             </li>

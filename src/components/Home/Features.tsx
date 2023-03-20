@@ -29,9 +29,9 @@ const featuresData = [
 
 export const Features = () => {
   return (
-    <div className='bg-white'>
-      <h2 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl'>Avec codetracker tous vos projets web</h2>
-      <p className='mt-2 text-2xl leading-8 text-gray-600'>glisseront comme sur des roulettes.</p>
+    <div className='bg-white text-custom-dark'>
+      <h2 className='text-3xl font-bold tracking-tight  sm:text-5xl'>Avec codetracker tous vos projets web</h2>
+      <p className='mt-2 text-2xl leading-8 text-custom-gray'>glisseront comme sur des roulettes.</p>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className='mx-auto mt-10 grid max-w-2xl grid-cols-1 border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3'>
           {featuresData.map((post) => (
@@ -39,11 +39,11 @@ export const Features = () => {
               <div className='flex items-center gap-x-4 text-xs'></div>
               <div className='group relative'>
                 <img src={post.image} alt={post.imageAlt} className='w-full h-64 object-contain' />
-                <h3 className='mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600'>
+                <h3 className='mt-3 text-lg font-semibold leading-6 text-custom-dark'>
                   <span className='absolute inset-0' />
                   {post.title}
                 </h3>
-                <p className='mt-5 pr-8 text-sm leading-6 text-gray-600 line-clamp-3'>{post.description}</p>
+                <p className='mt-5 pr-8 text-sm leading-6 text-custom-gray line-clamp-3'>{post.description}</p>
               </div>
               <div className='relative mt-8 flex items-center gap-x-4'></div>
             </article>

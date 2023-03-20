@@ -29,20 +29,13 @@ const RadialBar = ({ data }: any) => {
     percentage.push({ name, value });
   });
 
-  // {entries.map(
-  // 	([key, val]) =>
-  // 		key != 'null' && (
-  // 			<div>
-  // 				<span className='font-bold text-teal-500 '>{val} </span>
-  // 				<span className='text-xs text-teal-400 font-normal'>{key}</span>
-  // 			</div>
-  // 		),
-  // )}
-
   let table = Object.entries(percentage);
   let series = table.map(([key, val]) => val.value);
 
   let options: any = {
+    chart: {
+      fontFamily: 'poppins, Arial, sans-serif',
+    },
     labels: table.map(([key, val]) => (val.name != 'null' ? val.name : 'Autres')),
     legend: {
       show: true,
@@ -79,7 +72,7 @@ const RadialBar = ({ data }: any) => {
         total: {
           show: false,
           label: 'Total',
-          color: '#373d3f',
+          color: '#242242',
           formatter: function (w: any) {
             return languageTab.length;
           },

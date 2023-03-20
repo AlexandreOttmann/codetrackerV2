@@ -2,14 +2,14 @@ import CodeTrackerHeroImg from '../../assets/codetrackerHero.svg';
 
 const Hero = () => {
   return (
-    <section className='bg-white text-gray-800 h-[calc(100vh_-_70px)] justify-center flex'>
+    <section className='bg-white text-custom-dark h-[calc(100vh_-_70px)] justify-center flex'>
       <div className='container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between'>
         <div className='flex flex-col justify-center text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left'>
           <h1 className='text-5xl font-bold sm:text-6xl'>
-            <div className='mb-9'>CodeTracker</div>
+            <div className='mb-9 text-custom-dark'>CodeTracker</div>
             <div className='leading-[0]'>
               <span className=' text-4xl'>une manière simple de </span>
-              <span className='text-indigo-500 text-4xl'> suivre vos projets</span>
+              <span className='text-custom-blue text-4xl'> suivre vos projets</span>
             </div>
           </h1>
           <p className='mt-6 mb-8 text-lg sm:mb-12'>Un service gratuit au service des projets !</p>
