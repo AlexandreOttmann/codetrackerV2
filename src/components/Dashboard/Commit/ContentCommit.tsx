@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../../../context/Context';
 import { useLocation } from 'react-router';
 import { BackButton } from '../../Layout/Elements/BackButton';
-import { dateConverter } from '../../../utils/dateFormater';
+import { StatsCard } from './StatsCard';
+import { AuthorInfos } from './AuthorInfos';
 
 const ContentCommit = () => {
   const [data, setData] = useState<any>([]);
@@ -32,27 +32,23 @@ const ContentCommit = () => {
         <BackButton />
         {!isLoading && (
           <>
-            <div className='flex flex-col py-5'>
-              <h1 className='text-gray-900 font-bold py-2'>
-                {data.commit.message} - {data.sha}
-              </h1>
-              <div className='flex item-center gap-2'>
-                Auteur : <img src={data.author.avatar_url} alt='avatar' className='w-5 h-5 rounded-full' /> {data.commit.author.name[0].toUpperCase() + data.commit.author.name.slice(1)} - (
-                {data.author.login})
-              </div>
-              <div>Date : {dateConverter(data.commit.author.date)}</div>
-            </div>
+            <h1 className='text-gray-900 font-bold py-2'>
+              {data.commit.message} - {data.sha}
+            </h1>
             <div className='flex flex-col gap-2'>
-              <div className='flex flex-col gap-2'>
-                <h2>Statistiques</h2>
-                <p className='text-gray-600 font-semibold'>Additions</p>
-                <p className='text-gray-900'>{data.stats.additions}</p>
-
-                <p className='text-gray-600 font-semibold'>Deletions</p>
-                <p className='text-gray-900'>{data.stats.deletions}</p>
-
-                <p className='text-gray-600 font-semibold'>Total</p>
-                <p className='text-gray-900'>{data.stats.total}</p>
+              <div className='flex justify-between gap-5'>
+                <div className='flex flex-col w-1/2'>
+                  <div className='border-b mb-4'>
+                    <h2 className='text-2xl text-gray-600 p-4 font-semibold tracking-wide'>Auteur & infos</h2>
+                  </div>
+                  <AuthorInfos data={data} />
+                </div>
+                <div className='w-1/2 '>
+                  <div className='border-b mb-4'>
+                    <h2 className='text-2xl text-gray-600 p-4 font-semibold tracking-wide'>Statistiques</h2>
+                  </div>
+                  <StatsCard data={data} />
+                </div>
               </div>
               <div className='inline-block min-w-full shadow rounded border-t-8 border-t-indigo-500 overflow-hidden'>
                 <table className='min-w-full leading-normal'>
