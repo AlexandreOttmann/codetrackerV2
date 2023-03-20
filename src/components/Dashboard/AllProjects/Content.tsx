@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import GlobalStatsGithub from './GlobalStatsGithub';
-import { Search } from './Search';
-import TableCommits from './TableCommits';
+import { Search } from '../Search';
+import TableProjects from './TableProjects';
 import RadialBar from './GlobalChartMood';
 import { useAuth } from '../../../context/Context';
 
-const Content = () => {
+export const Content = () => {
   const [data, setData] = useState<any>([]);
   const [uidloaded, setUidLoaded] = useState(0);
   const user: any = useAuth();
@@ -13,7 +13,6 @@ const Content = () => {
   const getData = async () => {
     try {
       const uid = auth.githubId;
-
       const response = await fetch(`https://api.github.com/user/${uid}/repos?per_page=50`);
       const data = await response.json();
       setData(data);
@@ -27,8 +26,6 @@ const Content = () => {
 
     getData();
   }, [uidloaded]);
-
-  console.log(data);
 
   return (
     <div className='z-2 p-4 sm:ml-64 xl:ml-[calc(20em_-_4.5em)] 2xl:ml-[calc(12em_-_4.5em)] '>
@@ -57,11 +54,9 @@ const Content = () => {
           </div>
         </div>
         <div className='grid grid-cols-1 gap-4 mb-2'>
-          <TableCommits data={data} />
+          <TableProjects data={data} />
         </div>
       </div>
     </div>
   );
 };
-
-export default Content;

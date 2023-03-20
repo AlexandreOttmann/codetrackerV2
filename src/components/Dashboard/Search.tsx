@@ -8,6 +8,11 @@ export const Search = () => {
     setMessage(e.target.value);
   };
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log('SUBMIT', message);
+  };
+
   return (
     <form>
       <div className='relative'>
@@ -21,6 +26,7 @@ export const Search = () => {
           id='default-search'
           value={message}
           onChange={handleChange}
+          onSubmit={handleSubmit}
           className='block w-full p-4 pl-10 text-sm text-gray-900 border-gray-100 rounded bg-gray-50 focus:ring-blue-500 focus:border-blue-500 shadow'
           placeholder='Rechercher un projet github...'
         />
