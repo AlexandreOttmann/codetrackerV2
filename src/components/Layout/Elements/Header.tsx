@@ -7,7 +7,8 @@ import { auth } from '../../../database/firebase';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/Context';
 import { AuthContext } from '../../../context/Context';
-import { useMatch } from 'react-router-dom';
+import { useMatch, useNavigate } from 'react-router-dom';
+
 <svg
  xmlns="http://www.w3.org/2000/svg"
  fill="none"
@@ -25,7 +26,7 @@ import { useMatch } from 'react-router-dom';
 
 export interface IHomePage {}
 const navigation = [
- { name: 'A propos', href: '/login', current: true },
+ //  { name: 'A propos', href: '/login', current: true },
  { name: 'Team', href: '#', current: false },
  { name: 'Projects', href: '#', current: false },
  { name: 'Calendar', href: '#', current: false },
@@ -48,16 +49,24 @@ export const Header = () => {
   }
  }, [user]);
 
+ const navigate = useNavigate();
+
+ const logout = () => {
+  signOut(auth)
+   .then(() => localStorage.removeItem('user'))
+   .then(() => navigate('/login'));
+ };
+
  return (
   <>
    <Disclosure as="nav">
     {({ open }) => (
      <>
-      <div className="mx-auto px-4 max-w-7xl rounded-xl bg-custom-dark mb-20">
+      <div className="mx-auto px-4 max-w-7xl  bg-custom-dark  rounded-b-md">
        <div className="relative flex h-16 items-center justify-between ">
-        <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <div className=" inset-y-0 left-0 flex items-center sm:hidden">
          {/* Mobile menu button*/}
-         <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-900 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+         <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-white hover:text-custom-blue focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
           <span className="sr-only">Open main menu</span>
           {open ? (
            <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -72,8 +81,8 @@ export const Header = () => {
            CodeTracker
           </div>
          </Link>
-         <div className="hidden sm:ml-6 sm:block">
-          <div className="flex space-x-4">
+         <div className="hidden  sm:ml-6 sm:block">
+          <div className="flex  space-x-4">
            {navigation.map((item) => (
             <a
              key={item.name}
@@ -92,7 +101,7 @@ export const Header = () => {
         </div>
         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
          {/* Profile dropdown */}
-         <Menu as="div" className="relative ml-3">
+         <Menu as="div" className="relative ml-3 ">
           <div>
            {!currentUser ? (
             <Menu.Button className="flex bg-custom-blue font-semibold text-white px-2 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -100,10 +109,18 @@ export const Header = () => {
              <Link to="/login">Se connecter</Link>
             </Menu.Button>
            ) : (
-            <Menu.Button className="flex bg-custom-blue font-semibold text-white px-2 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-             <span className="sr-only">Open user menu</span>
-             <Link to="/dashboard">Mon dashboard</Link>
-            </Menu.Button>
+            <div className="flex gap-2">
+             <Menu.Button className="hidden  sm:block  bg-custom-blue font-semibold  text-white px-2 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+              <span className="sr-only">Open user menu</span>
+              <Link to="/dashboard">Dashboard</Link>
+             </Menu.Button>
+             <Menu.Button
+              onClick={logout}
+              className="flex bg-custom-purple  font-semibold text-custom-blue px-2 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+             >
+              Déconnexion
+             </Menu.Button>
+            </div>
            )}
           </div>
          </Menu>
@@ -111,8 +128,11 @@ export const Header = () => {
        </div>
       </div>
 
-      <Disclosure.Panel className="sm:hidden">
-       <div className="space-y-1 px-2 pt-2 pb-3">
+      <Disclosure.Panel className="sm:hidden ">
+       <div className="absolute bg-slate-400 space-y-1 rounded-b-md   px-20 pt-2 pb-3">
+        <Link to="/dashboard" className="text-custom-blue">
+         Dashboard
+        </Link>
         {navigation.map((item) => (
          <Disclosure.Button
           key={item.name}
@@ -121,7 +141,7 @@ export const Header = () => {
           className={classNames(
            item.current
             ? 'bg-custom-blue text-white'
-            : 'text-gray-900 hover:bg-blue-600 hover:text-white',
+            : 'text-white  hover:bg-custom-blue hover:text-white',
            'block rounded-md px-3 py-2 text-base font-medium'
           )}
           aria-current={item.current ? 'page' : undefined}
@@ -129,6 +149,9 @@ export const Header = () => {
           {item.name}
          </Disclosure.Button>
         ))}
+        {/* <Menu.Button className="hidden  md:block  bg-custom-blue font-semibold  text-white px-2 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"> */}
+
+        {/* </Menu.Button> */}
        </div>
       </Disclosure.Panel>
      </>
